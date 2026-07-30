@@ -1,0 +1,28 @@
+Options -Indexes
+
+<FilesMatch "^(data\.sqlite|data\.sqlite-wal|data\.sqlite-shm|\.env|.*\.bak|.*\.log)$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(sqlite|sqlite3|db|env|ini|log|bak)$">
+    Require all denied
+</FilesMatch>
+
+RewriteEngine On
+
+# Camadas internas nunca devem ser expostas pelo servidor web.
+RewriteRule ^(?:app|config|database|storage|views)(?:/|$) - [F,L]
+
+# Mantém as URLs antigas enquanto o document root real fica isolado em public/.
+RewriteRule ^$ public/index.php [L]
+RewriteRule ^index\.php$ public/index.php [L]
+RewriteRule ^admin\.php$ public/admin.php [L]
+RewriteRule ^logout\.php$ public/logout.php [L]
+RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+RewriteRule ^media/(.*)$ public/media/$1 [L]
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>

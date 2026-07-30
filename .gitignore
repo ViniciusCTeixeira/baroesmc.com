@@ -1,0 +1,66 @@
+# ==============================
+# Segredos e configurações locais
+# ==============================
+/.env
+/.env.*
+!/.env.example
+/.secrets/
+/config/*.local.php
+/config/*.local.*
+*.key
+*.pem
+*.p12
+*.pfx
+
+# ==============================
+# Banco e dados de execução
+# ==============================
+/storage/*
+/database/
+/*.sqlite
+/*.sqlite-*
+/*.db
+/*.db-*
+/data.sqlite
+/data.sqlite-*
+
+# ==============================
+# Uploads e conteúdo gerenciado pelo admin
+# Esses arquivos devem ficar no armazenamento persistente do servidor,
+# fora do código-fonte versionado.
+# ==============================
+/public/media/*
+
+# ==============================
+# Logs, cache e arquivos temporários
+# ==============================
+*.log
+/logs/
+/cache/
+/tmp/
+/temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+.phpunit.result.cache
+/coverage/
+
+# ==============================
+# Dependências e artefatos de build
+# ==============================
+/vendor/
+/node_modules/
+/dist/
+/build/
+
+# ==============================
+# IDE e sistema operacional
+# ==============================
+/.idea/
+/.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+Desktop.ini

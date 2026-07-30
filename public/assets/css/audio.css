@@ -1,0 +1,122 @@
+.audio-widget {
+    align-items: flex-end;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 16px;
+    z-index: 1080;
+}
+
+.audio-card,
+.audio-consent {
+    backdrop-filter: blur(16px);
+    background: rgba(13, 16, 19, .92);
+    border: 1px solid rgba(255, 255, 255, .16);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .32);
+    color: #fff;
+}
+
+.audio-card {
+    border-radius: 999px;
+    padding: 8px 12px;
+}
+
+.audio-consent {
+    align-items: stretch;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    max-width: 300px;
+    padding: 14px;
+}
+
+.audio-consent strong {
+    color: #fff;
+    display: block;
+    font-size: .86rem;
+    line-height: 1.25;
+}
+
+.audio-consent span {
+    color: #aab3bd;
+    display: block;
+    font-size: .74rem;
+    line-height: 1.45;
+}
+
+.audio-consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.audio-consent-actions .btn {
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
+.audio-consent-actions .btn-primary {
+    background: #f27522;
+    border-color: #f27522;
+    color: #1b0b03;
+}
+
+.audio-consent-actions .btn-primary:hover,
+.audio-consent-actions .btn-primary:focus {
+    background: #ff9a52;
+    border-color: #ff9a52;
+    color: #1b0b03;
+}
+
+.audio-controls {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+#audio-toggle i {
+    font-size: 16px;
+    text-align: center;
+    width: 16px;
+}
+
+#audio-close {
+    line-height: 1;
+}
+
+#audio-volume {
+    width: 130px;
+}
+
+.audio-toggle.playing {
+    background: #fff;
+    color: #000;
+}
+
+@media (max-width: 576px) {
+    .audio-widget {
+        align-items: stretch;
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+    }
+
+    .audio-consent {
+        max-width: none;
+    }
+
+    .audio-card {
+        align-self: flex-start;
+        display: block;
+        width: auto;
+    }
+
+    #audio-volume {
+        width: 90px;
+    }
+}
