@@ -49,7 +49,7 @@ define('SITE_MEDIA_DIR', PUBLIC_DIR . '/media/img/site');
 define('SITE_MEDIA_WEB', 'media/img/site');
 
 define('PAGE_SIZE', 24);
-define('MAX_BYTES', 8 * 1024 * 1024);
+define('MAX_BYTES', 16 * 1024 * 1024);
 define('MAX_USERNAME_LENGTH', 80);
 define('MAX_PASSWORD_LENGTH', 255);
 define('MIN_PASSWORD_LENGTH', 12);
@@ -59,7 +59,7 @@ define('SESSION_IDLE_SECONDS', 1800);
 define('ALLOWED_EXT', ['jpg', 'jpeg', 'png', 'gif', 'webp']);
 define('ALLOWED_MIME', ['image/jpeg', 'image/png', 'image/gif', 'image/webp']);
 define('SITE_IMAGE_EXT', ['jpg', 'jpeg', 'png', 'gif', 'webp', 'ico']);
-define('SITE_IMAGE_MIME', ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/x-icon', 'image/vnd.microsoft.icon']);
+define('SITE_IMAGE_MIME', ['image/jpeg', 'image/png', 'image/apng', 'image/x-png', 'image/gif', 'image/webp', 'image/x-icon', 'image/vnd.microsoft.icon']);
 define('AUDIO_EXT', ['mp3', 'wav', 'ogg']);
 define('AUDIO_MIME', ['audio/mpeg', 'audio/wav', 'audio/x-wav', 'audio/ogg']);
 define('PDF_EXT', ['pdf']);

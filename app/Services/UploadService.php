@@ -15,8 +15,11 @@ final class UploadService
         if ($error === UPLOAD_ERR_NO_FILE) {
             return null;
         }
-        if ($error !== UPLOAD_ERR_OK || empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
-            throw new RuntimeException('O upload não pôde ser processado.');
+        if ($error !== UPLOAD_ERR_OK) {
+            throw new RuntimeException(self::uploadErrorMessage($error));
+        }
+        if (empty($file['tmp_name']) || !is_uploaded_file($file['tmp_name'])) {
+            throw new RuntimeException('O upload não pôde ser processado pelo servidor.');
         }
 
         $size = (int)($file['size'] ?? 0);
@@ -74,6 +77,19 @@ final class UploadService
         $mime = finfo_file($finfo, $path);
         finfo_close($finfo);
         return is_string($mime) ? $mime : '';
+    }
+
+    private static function uploadErrorMessage(int $error): string
+    {
+        return match ($error) {
+            UPLOAD_ERR_INI_SIZE => 'O arquivo excede o limite configurado no servidor. Aumente upload_max_filesize e post_max_size.',
+            UPLOAD_ERR_FORM_SIZE => 'O arquivo excede o limite permitido pelo formulário.',
+            UPLOAD_ERR_PARTIAL => 'O upload foi interrompido antes de terminar. Tente novamente.',
+            UPLOAD_ERR_NO_TMP_DIR => 'O servidor não possui diretório temporário para uploads.',
+            UPLOAD_ERR_CANT_WRITE => 'O servidor não conseguiu gravar o arquivo enviado.',
+            UPLOAD_ERR_EXTENSION => 'Uma extensão do PHP interrompeu o upload.',
+            default => 'O upload não pôde ser processado pelo servidor.',
+        };
     }
 
     private static function isImage(string $path): bool

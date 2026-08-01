@@ -1,5 +1,10 @@
 Options -Indexes
 
+<IfModule mod_php.c>
+    php_value upload_max_filesize 16M
+    php_value post_max_size 24M
+</IfModule>
+
 <FilesMatch "^(data\.sqlite|data\.sqlite-wal|data\.sqlite-shm|\.env|.*\.bak|.*\.log)$">
     Require all denied
 </FilesMatch>

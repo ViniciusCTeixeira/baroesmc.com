@@ -3,6 +3,7 @@ require_once dirname(__DIR__) . '/app/bootstrap.php';
 $settings = \App\Repositories\SettingsRepository::all();
 $instagramUrl = external_url($settings['instagram_url']);
 $collaboradores = \App\Repositories\ContentRepository::activeColaboradores();
+$collaboratorLogos = array_slice(array_values(array_filter($collaboradores, static fn(array $collaborador): bool => trim((string)($collaborador['foto'] ?? '')) !== '')), 0, 5);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -22,7 +23,7 @@ $collaboradores = \App\Repositories\ContentRepository::activeColaboradores();
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/site.css?v=6">
+    <link rel="stylesheet" href="assets/css/site.css?v=7">
     <link rel="stylesheet" href="assets/css/audio.css?v=2">
 </head>
 <body class="site-page">
@@ -55,6 +56,22 @@ $collaboradores = \App\Repositories\ContentRepository::activeColaboradores();
         </div>
     </div>
 </header>
+
+<?php if ($collaboratorLogos): ?>
+<aside class="collaborator-float-rail" id="collaborator-float-rail" aria-label="Colaboradores em destaque">
+    <div class="collaborator-float-heading"><i class="fa-solid fa-handshake" aria-hidden="true"></i><span>Parceiros</span></div>
+    <div class="collaborator-float-carousel" aria-label="Logos dos colaboradores">
+        <div class="collaborator-float-track">
+        <?php foreach ($collaboratorLogos as $collaboratorLogo): ?>
+            <a class="collaborator-float-item scrollto" href="#colaboradores" aria-label="Ver <?= e($collaboratorLogo['nome']) ?>" data-collaborator-float-link>
+                <img src="<?= e(COLABORADORES_WEB . '/' . rawurlencode((string)$collaboratorLogo['foto'])) ?>" alt="<?= e($collaboratorLogo['nome']) ?>" decoding="async">
+            </a>
+        <?php endforeach; ?>
+        </div>
+    </div>
+    <span class="collaborator-float-progress" id="collaborator-float-progress" aria-live="polite">1 / <?= count($collaboratorLogos) ?></span>
+</aside>
+<?php endif; ?>
 
 <main>
 <section id="sobre" class="site-section site-section-light">
@@ -195,6 +212,6 @@ $collaboradores = \App\Repositories\ContentRepository::activeColaboradores();
 <div class="audio-widget" id="bg-audio-widget" aria-live="polite"><div class="audio-consent" id="audio-consent" role="dialog" aria-labelledby="audio-consent-title"><strong id="audio-consent-title">Ativar música de fundo?</strong><span>O site possui uma trilha sonora opcional.</span><div class="audio-consent-actions"><button id="audio-consent-allow" class="btn btn-sm btn-primary" type="button"><i class="fa-solid fa-volume-high" aria-hidden="true"></i> Ativar música</button><button id="audio-consent-deny" class="btn btn-sm btn-outline-light" type="button">Agora não</button></div></div><div class="audio-card"><div class="audio-controls"><button id="audio-toggle" class="btn btn-sm btn-light audio-toggle" type="button" aria-label="Tocar música"><i class="fa-solid fa-play" id="audio-icon" aria-hidden="true"></i></button><input type="range" min="0" max="1" step="0.01" id="audio-volume" value="<?= e($settings['audio_volume']) ?>" aria-label="Volume"><button id="audio-close" class="btn btn-sm btn-outline-light" type="button" title="Desativar música" aria-label="Desativar música">×</button></div></div></div>
 <audio id="bg-music" src="<?= e(site_media_url($settings['audio_path'])) ?>" preload="auto" loop playsinline></audio>
 <?php endif; ?>
-<script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.bundle.min.js"></script><script src="assets/js/fontawesome.min.js" data-auto-replace-svg="false"></script><script src="assets/js/gallery.js?v=1"></script><script src="assets/js/collaborator-pdf.js?v=1"></script><?php if ($settings['audio_enabled'] === '1' && $settings['audio_path'] !== ''): ?><script src="assets/js/audio.js?v=2"></script><?php endif; ?><script src="assets/js/application.js"></script>
+<script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.bundle.min.js"></script><script src="assets/js/fontawesome.min.js" data-auto-replace-svg="false"></script><script src="assets/js/gallery.js?v=1"></script><script src="assets/js/collaborator-pdf.js?v=1"></script><script src="assets/js/collaborator-float.js?v=1"></script><?php if ($settings['audio_enabled'] === '1' && $settings['audio_path'] !== ''): ?><script src="assets/js/audio.js?v=2"></script><?php endif; ?><script src="assets/js/application.js"></script>
 </body>
 </html>
