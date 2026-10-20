@@ -160,4 +160,8 @@ O escopo de cada instalação deve definir os conteúdos fornecidos, os respons�
 
 ## Licença e uso
 
-Defina a licença, os direitos de uso da marca e as regras de distribuição antes de publicar este repositório ou comercializar novas instalações.
+O código original desta aplicação é **proprietário**, com direitos reservados aos respectivos titulares. A publicação do repositório permite consulta ao código, mas **não concede autorização geral para copiar, redistribuir, sublicenciar, comercializar ou implantar a solução sem autorização**. Consulte [LICENSE](LICENSE).
+
+A autoria técnica não implica titularidade das marcas e dos conteúdos. O nome Barões MC, logotipos, imagens, materiais dos clubes e outros ativos de terceiros pertencem a seus respectivos titulares e exigem as autorizações adequadas para utilização.
+
+Componentes de terceiros (por exemplo, Bootstrap e Font Awesome) continuam sujeitos às respectivas licenças. Contratos de implantação, suporte e cessão/licenciamento de direitos, quando existentes, prevalecem sobre este aviso na medida aplicável.
